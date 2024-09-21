@@ -1,0 +1,78 @@
+:root {
+  /* Primary color shades */
+  --primary-100: #e3e1fc;
+  --primary-200: #c7c2f9;
+  --primary-300: #aba4f6;
+  --primary-400: #8f85f3;
+  --primary-500: #7367f0;
+  --primary-600: #685dd8;
+  --primary-700: #6258cc;
+  --primary-800: #5c52c0;
+  --primary-900: #564db4;
+
+  /* Secondary color shades */
+  --secondary-100: #eeeeef;
+  --secondary-200: #dcddde;
+  --secondary-300: #cbccce;
+  --secondary-400: #b9bbbe;
+  --secondary-500: #a8aaae;
+  --secondary-600: #97999d;
+  --secondary-700: #8f9194;
+  --secondary-800: #86888b;
+  --secondary-900: #7e8082;
+
+  /* Gray color shades */
+  --gray-100: #f6f6f7;
+  --gray-200: #dbdade;
+  --gray-300: #c9c7ce;
+  --gray-400: #b7b5be;
+  --gray-500: #a5a2ad;
+  --gray-600: #93909d;
+  --gray-700: #817e8d;
+  --gray-800: #6f6b7d;
+  --gray-900: #5d596c;
+
+  /* Success color shades */
+  --success-100: #d4f4e2;
+  --success-200: #a9e9c5;
+  --success-300: #7edda9;
+  --success-400: #53d28c;
+  --success-500: #28c76f;
+  --success-600: #24b364;
+  --success-700: #22a95e;
+  --success-800: #209f59;
+  --success-900: #1e9553;
+
+  /* Danger color shades */
+  --danger-100: #fbdddd;
+  --danger-200: #f4c7c7;
+  --danger-300: #eeb2b2;
+  --danger-400: #e89e9e;
+  --danger-500: ##ea5455;
+  --danger-600: #ea5656;
+  --danger-700: #e95151;
+  --danger-800: #e74d4d;
+  --danger-900: #e54949;
+
+  /* Warning color shades */
+  --warning-100: #ffe5d1;
+  --warning-200: #ffdbb3;
+  --warning-300: #ffd1a0;
+  --warning-400: #ffc78c;
+  --warning-500: ##ff9f43;
+  --warning-600: #e55e32;
+  --warning-700: #d9562c;
+  --warning-800: #cc4f28;
+  --warning-900: #c04823;
+
+  /* Info color shades */
+  --info-100: #ccf1f5;
+  --info-200: #99e3eb;
+  --info-300: #66d5e3;
+  --info-400: #33c7db;
+  --info-500: ##00cfe8;
+  --info-600: #00bacd;
+  --info-700: #00b4c7;
+  --info-800: #00afc2;
+  --info-900: #00a9bc;
+}
