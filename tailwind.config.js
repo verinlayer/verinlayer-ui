@@ -1,86 +1,50 @@
+import Color from 'color'
+
+const lighten = (clr, val) => Color(clr).mix(Color('white'), val).rgb().string()
+const darken = (clr, val) => Color(clr).mix(Color('black'), val).rgb().string()
+
+const generateContrasts = (variant, palette) => ({
+  [variant]: palette,
+})
+
+const palette = {
+  primary: '#7367f0',
+  secondary: '#a8aaae',
+  success: '#28c76f',
+  danger: '#ea5455',
+  warning: '#ff9f43',
+  info: '#00cfe8',
+  gray: '#a5a2ad',
+  light: '#DFDFE3',
+  dark: '#4B4B4B',
+}
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      colors: {
-        primary: {
-          100: 'var(--primary-100)',
-          200: 'var(--primary-200)',
-          300: 'var(--primary-300)',
-          400: 'var(--primary-400)',
-          500: 'var(--primary-500)',
-          600: 'var(--primary-600)',
-          700: 'var(--primary-700)',
-          800: 'var(--primary-800)',
-          900: 'var(--primary-900)',
-        },
-        secondary: {
-          100: 'var(--secondary-100)',
-          200: 'var(--secondary-200)',
-          300: 'var(--secondary-300)',
-          400: 'var(--secondary-400)',
-          500: 'var(--secondary-500)',
-          600: 'var(--secondary-600)',
-          700: 'var(--secondary-700)',
-          800: 'var(--secondary-800)',
-          900: 'var(--secondary-900)',
-        },
-        success: {
-          100: 'var(--success-100)',
-          200: 'var(--success-200)',
-          300: 'var(--success-300)',
-          400: 'var(--success-400)',
-          500: 'var(--success-500)',
-          600: 'var(--success-600)',
-          700: 'var(--success-700)',
-          800: 'var(--success-800)',
-          900: 'var(--success-900)',
-        },
-        danger: {
-          100: 'var(--danger-100)',
-          200: 'var(--danger-200)',
-          300: 'var(--danger-300)',
-          400: 'var(--danger-400)',
-          500: 'var(--danger-500)',
-          600: 'var(--danger-600)',
-          700: 'var(--danger-700)',
-          800: 'var(--danger-800)',
-          900: 'var(--danger-900)',
-        },
-        warning: {
-          100: 'var(--warning-100)',
-          200: 'var(--warning-200)',
-          300: 'var(--warning-300)',
-          400: 'var(--warning-400)',
-          500: 'var(--warning-500)',
-          600: 'var(--warning-600)',
-          700: 'var(--warning-700)',
-          800: 'var(--warning-800)',
-          900: 'var(--warning-900)',
-        },
-        info: {
-          100: 'var(--info-100)',
-          200: 'var(--info-200)',
-          300: 'var(--info-300)',
-          400: 'var(--info-400)',
-          500: 'var(--info-500)',
-          600: 'var(--info-600)',
-          700: 'var(--info-700)',
-          800: 'var(--info-800)',
-          900: 'var(--info-900)',
-        },
-        gray: {
-          100: 'var(--gray-100)',
-          200: 'var(--gray-200)',
-          300: 'var(--gray-300)',
-          400: 'var(--gray-400)',
-          500: 'var(--gray-500)',
-          600: 'var(--gray-600)',
-          700: 'var(--gray-700)',
-          800: 'var(--gray-800)',
-          900: 'var(--gray-900)',
-        },
+      colors: Object.keys(palette).reduce(
+        (colors, variant) => ({
+          ...colors,
+          ...generateContrasts(variant, {
+            DEFAULT: palette[variant],
+            100: lighten(palette[variant], 0.8),
+            200: lighten(palette[variant], 0.6),
+            300: lighten(palette[variant], 0.4),
+            400: lighten(palette[variant], 0.2),
+            500: palette[variant],
+            600: darken(palette[variant], 0.1),
+            700: darken(palette[variant], 0.15),
+            800: darken(palette[variant], 0.2),
+            900: darken(palette[variant], 0.25),
+          }),
+        }),
+        {}
+      ),
+      container: {
+        center: true,
+        padding: '1rem',
       },
     },
   },
