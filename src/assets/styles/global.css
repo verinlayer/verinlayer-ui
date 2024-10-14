@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-white bg-dark font-manrope;
+  }
+
+  .home {
+    @apply bg-home bg-no-repeat bg-cover bg-center bg-fixed h-screen;
+  }
+
+  .dashboard {
+    @apply bg-dashboard bg-no-repeat bg-contain bg-center bg-fixed h-screen;
+  }
+
+  .main {
+    min-height: calc(100vh - 188px);
+    padding: 60px 0;
+  }
+
+  .card {
+    border-radius: 8px;
+    border: 1px solid #b0a5c7;
+    background: rgba(19, 41, 70, 0.7);
+    backdrop-filter: blur(4px);
+    padding: 16px 24px;
+  }
+}

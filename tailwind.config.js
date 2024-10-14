@@ -16,7 +16,7 @@ const palette = {
   info: '#00cfe8',
   gray: '#a5a2ad',
   light: '#DFDFE3',
-  dark: '#4B4B4B',
+  dark: '#010C23',
 }
 
 /** @type {import('tailwindcss').Config} */
@@ -40,11 +40,23 @@ export default {
             900: darken(palette[variant], 0.25),
           }),
         }),
-        {}
+        {
+          'sub-heading': '#D2CAE3',
+          'green-400': '#63DF95',
+          heading: '#FEFDFF',
+        }
       ),
       container: {
         center: true,
         padding: '1rem',
+      },
+      backgroundImage: {
+        home: "url('/src/assets/images/home.png')",
+        dashboard: "url('/src/assets/images/dashboard.png')",
+      },
+      fontFamily: {
+        unbounded: ['Unbounded', 'sans-serif'],
+        manrope: ['Manrope', 'sans-serif'],
       },
     },
   },
