@@ -2,7 +2,7 @@ import React from 'react'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 
-import AAVEImg from '../../assets/images/aave.png'
+import AAVEImg from '../../assets/images/AAVE.png'
 import compoundImg from '../../assets/images/compound.svg'
 import uniswapImg from '../../assets/images/uniswap.png'
 import eigenLayerImg from '../../assets/images/eigenlayer.png'
