@@ -8,7 +8,7 @@ const generateContrasts = (variant, palette) => ({
 })
 
 const palette = {
-  primary: '#7367f0',
+  primary: '#63DF95',
   secondary: '#a8aaae',
   success: '#28c76f',
   danger: '#ea5455',
@@ -48,6 +48,8 @@ export default {
           'sub-heading': '#D2CAE3',
           'green-400': '#63DF95',
           heading: '#FEFDFF',
+          background: '#010C23',
+          body: '#B3A9C9',
         }
       ),
       container: {
