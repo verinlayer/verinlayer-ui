@@ -1,10 +1,10 @@
 import { Tab } from "rizzui";
 
 import AaveTransactions from "./components/AaveTransactions";
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import Overview from './components/Overview'
-import ProofsList from './components/ProofsList'
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import Overview from "./components/Overview";
+import ProofsList from "./components/ProofsList";
 
 const Dashboard = () => {
   return (
@@ -29,7 +29,7 @@ const Dashboard = () => {
                   Proofs List
                 </Tab.ListItem>
               </Tab.List>
-              <Tab.Panels>
+              <Tab.Panels className="pt-0 mt-0">
                 <Tab.Panel>
                   <Overview />
                 </Tab.Panel>
