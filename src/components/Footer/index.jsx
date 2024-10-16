@@ -1,4 +1,4 @@
-import React from 'react'
+
 
 import xImg from '../../assets/images/x.svg'
 import discordImg from '../../assets/images/discord.svg'

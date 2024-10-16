@@ -1,6 +1,6 @@
-import React from 'react'
-import { Tab } from 'rizzui'
+import { Tab } from "rizzui";
 
+import AaveTransactions from "./components/AaveTransactions";
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Overview from './components/Overview'
@@ -33,7 +33,9 @@ const Dashboard = () => {
                 <Tab.Panel>
                   <Overview />
                 </Tab.Panel>
-                <Tab.Panel>Popular panel</Tab.Panel>
+                <Tab.Panel>
+                  <AaveTransactions />
+                </Tab.Panel>
                 <Tab.Panel>
                   <ProofsList />
                 </Tab.Panel>
@@ -44,7 +46,7 @@ const Dashboard = () => {
         <Footer />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
