@@ -1,11 +1,10 @@
-import React from 'react'
-import Footer from '../../components/Footer'
-import Header from '../../components/Header'
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
 
-import AAVEImg from '../../assets/images/AAVE.png'
-import compoundImg from '../../assets/images/compound.svg'
-import uniswapImg from '../../assets/images/uniswap.png'
-import eigenLayerImg from '../../assets/images/eigenlayer.png'
+import AAVEImg from "../../assets/images/AAVE.png";
+import compoundImg from "../../assets/images/compound.svg";
+import uniswapImg from "../../assets/images/uniswap.png";
+import eigenLayerImg from "../../assets/images/eigenlayer.png";
 
 const Home = () => {
   return (
@@ -18,7 +17,7 @@ const Home = () => {
               Seamlessly unify <br />
               all blockchain activities
             </h1>
-            <h1 className="text-green-400 font-bold">In ONE platform .</h1>
+            <h1 className="font-bold text-green-400">In ONE platform .</h1>
           </div>
 
           <div className="mt-[56px] text-heading">
@@ -93,7 +92,7 @@ const Home = () => {
         <Footer />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
