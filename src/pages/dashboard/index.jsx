@@ -1,9 +1,10 @@
 import { Tab } from "rizzui";
 
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
-
 import AaveTransactions from "./components/AaveTransactions";
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
+import Overview from './components/Overview'
+import ProofsList from './components/ProofsList'
 
 const Dashboard = () => {
   return (
@@ -17,17 +18,27 @@ const Dashboard = () => {
 
           <div>
             <Tab>
-              <Tab.List>
-                <Tab.ListItem>Overview</Tab.ListItem>
-                <Tab.ListItem>Aave Transactions</Tab.ListItem>
-                <Tab.ListItem>Proofs List</Tab.ListItem>
+              <Tab.List className="border-b-0">
+                <Tab.ListItem className="font-unbounded font-medium text-[18px] before:h-[4px]">
+                  Overview
+                </Tab.ListItem>
+                <Tab.ListItem className="font-unbounded font-medium text-[18px] before:h-[4px]">
+                  Aave Transactions
+                </Tab.ListItem>
+                <Tab.ListItem className="font-unbounded font-medium text-[18px] before:h-[4px]">
+                  Proofs List
+                </Tab.ListItem>
               </Tab.List>
               <Tab.Panels>
-                <Tab.Panel>Recent panel</Tab.Panel>
+                <Tab.Panel>
+                  <Overview />
+                </Tab.Panel>
                 <Tab.Panel>
                   <AaveTransactions />
                 </Tab.Panel>
-                <Tab.Panel>Trending panel</Tab.Panel>
+                <Tab.Panel>
+                  <ProofsList />
+                </Tab.Panel>
               </Tab.Panels>
             </Tab>
           </div>
