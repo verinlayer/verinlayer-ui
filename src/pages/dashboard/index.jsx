@@ -1,10 +1,10 @@
-import { Tab } from "rizzui";
+import { Tab } from 'rizzui'
 
-import AaveTransactions from "./components/AaveTransactions";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
-import Overview from "./components/Overview";
-import ProofsList from "./components/ProofsList";
+import AaveTransactions from './components/AaveTransactions'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
+import Overview from './components/Overview'
+import ProofsList from './components/ProofsList'
 
 const Dashboard = () => {
   return (
@@ -46,7 +46,7 @@ const Dashboard = () => {
         <Footer />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard

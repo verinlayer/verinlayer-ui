@@ -1,8 +1,8 @@
-import React from "react";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import React from 'react'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
 
-import { Link, NavLink } from "react-router-dom";
-import logoImg from "../../assets/images/logo.png";
+import { Link, NavLink } from 'react-router-dom'
+import logoImg from '../../assets/images/logo.png'
 
 const Header = () => {
   return (
@@ -15,18 +15,18 @@ const Header = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? "text-green-400 flex items-center" : ""
+            isActive ? 'text-green-400 flex items-center' : ''
           }
         >
           {({ isActive }) => (
             <>
               {isActive ? (
                 <>
-                  <div className="w-[9px] h-[9px] rounded-full mr-2 bg-green-400"></div>{" "}
+                  <div className="w-[9px] h-[9px] rounded-full mr-2 bg-green-400"></div>{' '}
                   Home
                 </>
               ) : (
-                "Home"
+                'Home'
               )}
             </>
           )}
@@ -34,18 +34,18 @@ const Header = () => {
         <NavLink
           to="/dashboard"
           className={({ isActive }) =>
-            isActive ? "text-green-400 flex items-center" : ""
+            isActive ? 'text-green-400 flex items-center' : ''
           }
         >
           {({ isActive }) => (
             <>
               {isActive ? (
                 <>
-                  <div className="w-[9px] h-[9px] rounded-full mr-2 bg-green-400"></div>{" "}
+                  <div className="w-[9px] h-[9px] rounded-full mr-2 bg-green-400"></div>{' '}
                   Dashboard
                 </>
               ) : (
-                "Dashboard"
+                'Dashboard'
               )}
             </>
           )}
@@ -53,7 +53,7 @@ const Header = () => {
         <NavLink
           to="https://c-lending-ui.vercel.app/#/"
           className={({ isActive }) =>
-            isActive ? "text-green-400 flex items-center" : ""
+            isActive ? 'text-green-400 flex items-center' : ''
           }
           target="_blank"
         >
@@ -61,11 +61,11 @@ const Header = () => {
             <>
               {isActive ? (
                 <>
-                  <div className="w-[9px] h-[9px] rounded-full mr-2 bg-green-400"></div>{" "}
+                  <div className="w-[9px] h-[9px] rounded-full mr-2 bg-green-400"></div>{' '}
                   CLending
                 </>
               ) : (
-                "CLending"
+                'CLending'
               )}
             </>
           )}
@@ -75,7 +75,7 @@ const Header = () => {
         <ConnectButton />
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
