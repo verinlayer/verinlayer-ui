@@ -1,12 +1,32 @@
 import { Tab } from 'rizzui'
+import { useQuery } from '@tanstack/react-query'
 
 import AaveTransactions from './components/AaveTransactions'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Overview from './components/Overview'
 import ProofsList from './components/ProofsList'
+import apiService from '../../utils/apiService'
+
+async function fetchAaveTransaction() {
+  const response = await apiService.get(
+    'https://api.verinlayer.xyz/proof/aave/txs/0x39f130486283456AFeA838e1180627B05b39c796'
+  )
+
+  return response.data
+}
 
 const Dashboard = () => {
+  const { data } = useQuery({
+    queryKey: ['aaveTransactions'],
+    queryFn: () => fetchAaveTransaction(),
+    staleTime: 2000, // 2 seconds
+  })
+
+  const txs = data?.txs || []
+  const totalRepay = data?.totalRepay || '0'
+  const totalBorrow = data?.totalBorrow || '0'
+
   return (
     <div className="dashboard">
       <div className="container">
@@ -31,10 +51,10 @@ const Dashboard = () => {
               </Tab.List>
               <Tab.Panels className="pt-0 mt-0">
                 <Tab.Panel>
-                  <Overview />
+                  <Overview totalBorrow={totalBorrow} totalRepay={totalRepay} />
                 </Tab.Panel>
                 <Tab.Panel>
-                  <AaveTransactions />
+                  <AaveTransactions txs={txs} />
                 </Tab.Panel>
                 <Tab.Panel>
                   <ProofsList />

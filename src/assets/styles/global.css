@@ -28,3 +28,8 @@
     padding: 16px 24px;
   }
 }
+
+.item:not(:last-child) {
+  border-bottom: 1px solid #ccc; /* or your desired border color */
+  padding-bottom: 20px; /* Optional for spacing */
+}

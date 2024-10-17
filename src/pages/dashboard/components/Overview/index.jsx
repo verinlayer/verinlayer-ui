@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react'
 import EthImg from '../../../../assets/images/eth.png'
 import ReceiptAddImg from '../../../../assets/images/receipt-add.svg'
@@ -5,8 +6,10 @@ import BtcImg from '../../../../assets/images/btc.png'
 import AaveImg from '../../../../assets/images/aave-token.png'
 import CompImg from '../../../../assets/images/comp.png'
 import ClaimModal from './ClaimModal'
+import { formatAmount } from '../../../../utils/helper'
+import { formatUnits } from 'viem'
 
-const Overview = () => {
+const Overview = ({ totalBorrow, totalRepay }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -70,7 +73,7 @@ const Overview = () => {
           </div>
 
           <div className="font-unbounded text-[24px] font-medium leading-[36px]">
-            $ 45,738.78
+            $ {formatAmount(+formatUnits(totalBorrow, 6), 2)}
           </div>
         </div>
 
@@ -81,7 +84,7 @@ const Overview = () => {
           </div>
 
           <div className="font-unbounded text-[24px] font-medium leading-[36px]">
-            $ 104,621.92
+            $ {formatAmount(+formatUnits(totalRepay, 6), 2)}
           </div>
         </div>
 
