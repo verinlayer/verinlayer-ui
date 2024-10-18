@@ -1,22 +1,18 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit'
+import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { WagmiProvider } from 'wagmi'
-import { mainnet, polygon, optimism, arbitrum, base } from 'wagmi/chains'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
+import { ToastContainer } from 'react-toastify'
 
 import Home from './pages/home'
 import Dashboard from './pages/dashboard'
-import '@rainbow-me/rainbowkit/styles.css'
-import './assets/styles/global.css'
+import { wagmiConfig } from './configs/wagmiConfigs'
 
-const config = getDefaultConfig({
-  appName: 'My RainbowKit App',
-  projectId: 'YOUR_PROJECT_ID',
-  chains: [mainnet, polygon, optimism, arbitrum, base],
-  ssr: false, // If your dApp uses server side rendering (SSR)
-})
+import '@rainbow-me/rainbowkit/styles.css'
+import 'react-toastify/dist/ReactToastify.css'
+import './assets/styles/global.css'
 
 const router = createBrowserRouter([
   {
@@ -31,14 +27,15 @@ const router = createBrowserRouter([
   },
 ])
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <WagmiProvider config={config}>
+    <WagmiProvider config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
           <RouterProvider router={router} />
+          <ToastContainer closeButton={false} />
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>

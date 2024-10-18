@@ -1,5 +1,6 @@
 import { Tab } from 'rizzui'
 import { useQuery } from '@tanstack/react-query'
+import { useAccount } from 'wagmi'
 
 import AaveTransactions from './components/AaveTransactions'
 import Header from '../../components/Header'
@@ -8,18 +9,19 @@ import Overview from './components/Overview'
 import ProofsList from './components/ProofsList'
 import apiService from '../../utils/apiService'
 
-async function fetchAaveTransaction() {
+async function fetchAaveTransaction(address) {
   const response = await apiService.get(
-    'https://api.verinlayer.xyz/proof/aave/txs/0x39f130486283456AFeA838e1180627B05b39c796'
+    `https://api.verinlayer.xyz/proof/aave/txs/${address}`
   )
 
   return response.data
 }
 
 const Dashboard = () => {
+  const { address } = useAccount()
   const { data } = useQuery({
-    queryKey: ['aaveTransactions'],
-    queryFn: () => fetchAaveTransaction(),
+    queryKey: ['aaveTransactions', address],
+    queryFn: () => fetchAaveTransaction(address),
     staleTime: 2000, // 2 seconds
   })
 

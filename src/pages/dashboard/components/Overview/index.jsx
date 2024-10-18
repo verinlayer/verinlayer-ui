@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react'
+import { useState } from 'react'
 import EthImg from '../../../../assets/images/eth.png'
 import ReceiptAddImg from '../../../../assets/images/receipt-add.svg'
 import BtcImg from '../../../../assets/images/btc.png'
@@ -8,9 +8,36 @@ import CompImg from '../../../../assets/images/comp.png'
 import ClaimModal from './ClaimModal'
 import { formatAmount } from '../../../../utils/helper'
 import { formatUnits } from 'viem'
+import { contractAddresses } from '../../../../configs/contractAddresses'
+import { useAccount, useReadContracts } from 'wagmi'
+import { lendingABI } from '../../../../configs/abi/lendingAbi.ts'
+
+const lendingContract = {
+  address: contractAddresses.lending,
+  abi: lendingABI,
+}
 
 const Overview = ({ totalBorrow, totalRepay }) => {
+  const { address, chainId } = useAccount()
+  const { data: results, isLoading } = useReadContracts({
+    query: {
+      enabled: !!address && !!chainId,
+      refetchInterval: 3000,
+    },
+    contracts: [
+      {
+        ...lendingContract,
+        functionName: 'getBonusPercentage',
+        args: [address],
+      },
+    ],
+  })
+
   const [isOpen, setIsOpen] = useState(false)
+
+  const bonusPercentage = results?.[0].result || 0n
+
+  console.log('isLoading', isLoading)
 
   return (
     <div className="card px-[40px] py-[32px]">
@@ -27,7 +54,7 @@ const Overview = ({ totalBorrow, totalRepay }) => {
           </div>
 
           <div className="font-unbounded text-[24px] font-medium leading-[36px]">
-            24.890043
+            0
           </div>
         </div>
 
@@ -38,7 +65,7 @@ const Overview = ({ totalBorrow, totalRepay }) => {
           </div>
 
           <div className="font-unbounded text-[24px] font-medium leading-[36px]">
-            1.08398912
+            0
           </div>
         </div>
 
@@ -49,7 +76,7 @@ const Overview = ({ totalBorrow, totalRepay }) => {
           </div>
 
           <div className="font-unbounded text-[24px] font-medium leading-[36px]">
-            468.0682
+            0
           </div>
         </div>
 
@@ -60,7 +87,7 @@ const Overview = ({ totalBorrow, totalRepay }) => {
           </div>
 
           <div className="font-unbounded text-[24px] font-medium leading-[36px]">
-            1,024.7318
+            0
           </div>
         </div>
       </div>
@@ -106,7 +133,7 @@ const Overview = ({ totalBorrow, totalRepay }) => {
           </div>
 
           <div className="font-unbounded text-[24px] font-medium leading-[36px]">
-            $ 529,005.13
+            $ 0
           </div>
         </div>
       </div>
