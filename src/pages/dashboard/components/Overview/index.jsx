@@ -22,7 +22,7 @@ const Overview = ({ totalBorrow, totalRepay }) => {
   const { data: results, isLoading } = useReadContracts({
     query: {
       enabled: !!address && !!chainId,
-      refetchInterval: 3000,
+      refetchInterval: 5000,
     },
     contracts: [
       {
@@ -36,11 +36,20 @@ const Overview = ({ totalBorrow, totalRepay }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const bonusPercentage = results?.[0].result || 0n
-
-  console.log('isLoading', isLoading)
+  const bonusPercentageInPercent = bonusPercentage / 100n
 
   return (
     <div className="card px-[40px] py-[32px]">
+      <div className="flex items-center">
+        <div className="w-[9px] h-[9px] rounded-full mr-2 bg-green-400"></div>{' '}
+        Extra Percentage:
+      </div>
+      <div className="grid grid-cols-4 gap-4 mb-[12px]">
+        <div className="font-unbounded text-[24px] font-medium leading-[36px]">
+          {bonusPercentageInPercent.toString()}%
+        </div>
+      </div>
+
       <div className="flex items-center">
         <div className="w-[9px] h-[9px] rounded-full mr-2 bg-green-400"></div>{' '}
         Collaterals supply:
