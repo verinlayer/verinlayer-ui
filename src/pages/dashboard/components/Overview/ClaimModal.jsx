@@ -7,12 +7,11 @@ import {
   useWriteContract,
 } from 'wagmi'
 import { useQuery } from '@tanstack/react-query'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import closeIcon from '../../../../assets/images/close-square.svg'
 import apiService from '../../../../utils/apiService'
-import BrevisRequestAbi from '../../../../configs/abi/BrevisRequestAbi'
-import { parseEther } from 'viem'
+import BrevisRequestAbi from '../../../../configs/abi/BrevisRequestAbi.ts'
 
 async function fetchClaimData(address) {
   const response = await apiService.post(
