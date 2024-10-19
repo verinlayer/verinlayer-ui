@@ -12,7 +12,7 @@
   }
 
   .dashboard {
-    @apply bg-dashboard bg-no-repeat bg-auto bg-center bg-fixed h-screen;
+    @apply bg-dashboard bg-no-repeat bg-contain bg-center bg-fixed h-screen w-[1920px] mx-auto;
   }
 
   .main {
