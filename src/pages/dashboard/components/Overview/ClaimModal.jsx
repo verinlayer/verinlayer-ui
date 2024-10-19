@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { Modal } from 'rizzui'
 import {
-  useAccount,
+  // useAccount,
   useWaitForTransactionReceipt,
   useWriteContract,
 } from 'wagmi'
@@ -28,7 +28,8 @@ const ClaimModal = ({ isOpen, onClose }) => {
       hash,
     })
 
-  const { address } = useAccount()
+  // const { address } = useAccount()
+  const address = '0x39f130486283456AFeA838e1180627B05b39c796'
   const { data } = useQuery({
     queryKey: ['claimData', address, isOpen],
     queryFn: () => fetchClaimData(address),

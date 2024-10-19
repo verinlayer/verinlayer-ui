@@ -18,7 +18,8 @@ const lendingContract = {
 }
 
 const Overview = ({ totalBorrow, totalRepay }) => {
-  const { address, chainId } = useAccount()
+  const { chainId } = useAccount()
+  const address = '0x39f130486283456AFeA838e1180627B05b39c796'
   const { data: results } = useReadContracts({
     query: {
       enabled: !!address && !!chainId,
@@ -36,7 +37,7 @@ const Overview = ({ totalBorrow, totalRepay }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const bonusPercentage = results?.[0].result || 0n
-  const bonusPercentageInPercent = bonusPercentage / 100n
+  const bonusPercentageInPercent = bonusPercentage / 1000n
 
   return (
     <div className="card px-[40px] py-[32px]">
@@ -131,7 +132,7 @@ const Overview = ({ totalBorrow, totalRepay }) => {
           </div>
 
           <div className="font-unbounded text-[24px] font-medium leading-[36px]">
-            12
+            0
           </div>
         </div>
 
@@ -149,8 +150,9 @@ const Overview = ({ totalBorrow, totalRepay }) => {
 
       <div className="mt-[36px]">
         <button
-          className="bg-[#63DF95] text-[#1B132F] py-2 px-4 rounded-[4px] font-bold hover:bg-[#52c07a] flex items-center"
+          className="bg-[#63DF95] text-[#1B132F] py-2 px-4 rounded-[4px] font-bold hover:bg-[#52c07a] flex items-center disabled:opacity-50 disabled:cursor-not-allowed"
           onClick={() => setIsOpen(true)}
+          disabled={bonusPercentageInPercent > 0}
         >
           <img src={ReceiptAddImg} className="w-[24px] h-[24px] mr-[8px]" />{' '}
           Claim The Proof
