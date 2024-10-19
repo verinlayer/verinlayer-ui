@@ -1,12 +1,15 @@
-import Footer from "../../components/Footer";
-import Header from "../../components/Header";
+import { useNavigate } from 'react-router-dom'
 
-import AAVEImg from "../../assets/images/AAVE.png";
-import compoundImg from "../../assets/images/compound.svg";
-import uniswapImg from "../../assets/images/uniswap.png";
-import eigenLayerImg from "../../assets/images/eigenlayer.png";
+import Footer from '../../components/Footer'
+import Header from '../../components/Header'
+import AAVEImg from '../../assets/images/AAVE.png'
+import compoundImg from '../../assets/images/compound.svg'
+import uniswapImg from '../../assets/images/uniswap.png'
+import eigenLayerImg from '../../assets/images/eigenlayer.png'
 
 const Home = () => {
+  const navigate = useNavigate()
+
   return (
     <div className="home">
       <div className="container">
@@ -24,7 +27,10 @@ const Home = () => {
             Current supporting De-Fi projects to get proofs:
           </div>
           <div className="mt-[20px] flex space-x-[24px]">
-            <div className="card w-[440px] flex items-center">
+            <div
+              className="card w-[440px] flex items-center cursor-pointer"
+              onClick={() => navigate('/dashboard')}
+            >
               <div>
                 <img src={AAVEImg} alt="AAVE" />
               </div>
@@ -92,7 +98,7 @@ const Home = () => {
         <Footer />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
