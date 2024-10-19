@@ -19,7 +19,7 @@ const lendingContract = {
 
 const Overview = ({ totalBorrow, totalRepay }) => {
   const { address, chainId } = useAccount()
-  const { data: results, isLoading } = useReadContracts({
+  const { data: results } = useReadContracts({
     query: {
       enabled: !!address && !!chainId,
       refetchInterval: 5000,
@@ -156,7 +156,9 @@ const Overview = ({ totalBorrow, totalRepay }) => {
           Claim The Proof
         </button>
 
-        <ClaimModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        {isOpen ? (
+          <ClaimModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        ) : null}
       </div>
     </div>
   )

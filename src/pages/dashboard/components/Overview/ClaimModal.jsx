@@ -1,9 +1,77 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { Modal } from 'rizzui'
+import {
+  useAccount,
+  useWaitForTransactionReceipt,
+  useWriteContract,
+} from 'wagmi'
+import { useQuery } from '@tanstack/react-query'
+import { useEffect, useState } from 'react'
 
 import closeIcon from '../../../../assets/images/close-square.svg'
+import apiService from '../../../../utils/apiService'
+import BrevisRequestAbi from '../../../../configs/abi/BrevisRequestAbi'
+import { parseEther } from 'viem'
+
+async function fetchClaimData(address) {
+  const response = await apiService.post(
+    `https://api.verinlayer.xyz/proof/aave/${address}`
+  )
+
+  return response.data
+}
 
 const ClaimModal = ({ isOpen, onClose }) => {
+  const { data: hash, writeContract } = useWriteContract()
+  const { isLoading: isConfirming, isSuccess: isConfirmed } =
+    useWaitForTransactionReceipt({
+      hash,
+    })
+
+  const { address } = useAccount()
+  const { data } = useQuery({
+    queryKey: ['claimData', address, isOpen],
+    queryFn: () => fetchClaimData(address),
+    enabled: !!address && isOpen,
+    refetchInterval: false,
+  })
+
+  const handleClaim = async () => {
+    if (!data) return
+
+    console.log('data', data)
+    writeContract(
+      {
+        abi: BrevisRequestAbi,
+        address: data?.brevisRequestContract,
+        functionName: 'sendRequest',
+        args: [
+          data?.request?.proofId,
+          data?.request?.nonce,
+          address,
+          {
+            target: data?.verinContract,
+            gas: 0,
+          },
+          0,
+        ],
+        value: data?.request?.fee,
+      },
+      {
+        onError: (err) => {
+          console.error(err.message)
+        },
+      }
+    )
+  }
+
+  useEffect(() => {
+    if (isConfirmed) {
+      debugger
+    }
+  }, [isConfirmed])
+
   return (
     <div>
       <Modal isOpen={isOpen} onClose={() => {}}>
@@ -54,7 +122,10 @@ const ClaimModal = ({ isOpen, onClose }) => {
             </div>
 
             <div className="flex-1">
-              <button className="bg-[#63DF95] text-[#1B132F] py-2 px-4 rounded hover:bg-[#52c07a] w-full text-sm font-bold">
+              <button
+                className="bg-[#63DF95] text-[#1B132F] py-2 px-4 rounded hover:bg-[#52c07a] w-full text-sm font-bold"
+                onClick={handleClaim}
+              >
                 Claim
               </button>
             </div>
