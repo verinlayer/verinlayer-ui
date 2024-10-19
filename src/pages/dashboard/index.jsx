@@ -1,6 +1,6 @@
 import { Tab } from 'rizzui'
 import { useQuery } from '@tanstack/react-query'
-import { useAccount } from 'wagmi'
+// import { useAccount } from 'wagmi'
 
 import AaveTransactions from './components/AaveTransactions'
 import Header from '../../components/Header'
@@ -18,7 +18,8 @@ async function fetchAaveTransaction(address) {
 }
 
 const Dashboard = () => {
-  const { address } = useAccount()
+  // const { address } = useAccount()
+  const address = '0x39f130486283456AFeA838e1180627B05b39c796';
   const { data } = useQuery({
     queryKey: ['aaveTransactions', address],
     queryFn: () => fetchAaveTransaction(address),
