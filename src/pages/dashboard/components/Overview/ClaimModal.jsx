@@ -11,7 +11,7 @@ import { useEffect } from 'react'
 
 import closeIcon from '../../../../assets/images/close-square.svg'
 import apiService from '../../../../utils/apiService'
-import BrevisRequestAbi from '../../../../configs/abi/BrevisRequestAbi.ts'
+import BrevisRequestAbi from '../../../../configs/abi/brevisRequestAbi.ts'
 
 async function fetchClaimData(address) {
   const response = await apiService.post(
