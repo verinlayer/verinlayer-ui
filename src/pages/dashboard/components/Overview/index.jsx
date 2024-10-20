@@ -19,7 +19,7 @@ const lendingContract = {
 
 const Overview = ({ totalBorrow, totalRepay }) => {
   const { chainId } = useAccount()
-  const address = '0x39f130486283456AFeA838e1180627B05b39c796'
+  const address = '0x6cd71d6cb7824add7c277f2ca99635d98f8b9248'
   const { data: results } = useReadContracts({
     query: {
       enabled: !!address && !!chainId,

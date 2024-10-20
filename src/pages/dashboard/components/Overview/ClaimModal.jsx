@@ -8,10 +8,18 @@ import {
 } from 'wagmi'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
+import { toast } from 'react-toastify'
+import ClipLoader from 'react-spinners/ClipLoader'
+import HashLoader from 'react-spinners/HashLoader'
+import { formatUnits } from 'viem'
+import { useDispatch } from 'react-redux'
 
 import closeIcon from '../../../../assets/images/close-square.svg'
 import apiService from '../../../../utils/apiService'
 import BrevisRequestAbi from '../../../../configs/abi/brevisRequestAbi.ts'
+import { useProofsListState } from '../../../../store/proofsList/hooks'
+import { formatAmount, shortAddress } from '../../../../utils/helper.js'
+import { setProofsListState } from '../../../../store/proofsList/index.js'
 
 async function fetchClaimData(address) {
   const response = await apiService.post(
@@ -29,13 +37,17 @@ const ClaimModal = ({ isOpen, onClose }) => {
     })
 
   // const { address } = useAccount()
-  const address = '0x39f130486283456AFeA838e1180627B05b39c796'
-  const { data } = useQuery({
+  const address = '0x6cd71d6cb7824add7c277f2ca99635d98f8b9248'
+  const { data, isLoading } = useQuery({
     queryKey: ['claimData', address, isOpen],
     queryFn: () => fetchClaimData(address),
     enabled: !!address && isOpen,
-    refetchInterval: false,
+    refetchOnWindowFocus: false,
   })
+  const { dataSource } = useProofsListState()
+  const dispatch = useDispatch()
+
+  console.log('dataSource', dataSource)
 
   const handleClaim = async () => {
     if (!data) return
@@ -68,7 +80,20 @@ const ClaimModal = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     if (isConfirmed) {
-      debugger
+      toast.success('Claimed successfully')
+      const payload = {
+        platform: 'aave',
+        sourceChain: 'ethereum (ERC20)',
+        date: new Date().toLocaleDateString(),
+        txHash: hash,
+      }
+      if (dataSource && dataSource.length > 0) {
+        dispatch(setProofsListState({ dataSource: [...dataSource, payload] }))
+      } else {
+        let newDataSource = []
+        newDataSource.push(payload)
+        dispatch(setProofsListState({ dataSource: newDataSource }))
+      }
     }
   }, [isConfirmed])
 
@@ -86,30 +111,54 @@ const ClaimModal = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          <div>
-            <div className="space-y-4">
-              <div className="flex justify-between items-center">
-                <div className="text-sm text-sub-heading">To address:</div>
-                <div className="text-sm font-unbounded font-medium text-green-400">
-                  Ox7882...DE9K73
-                </div>
-              </div>
-
-              <div className="flex justify-between items-center">
-                <div className="text-sm text-sub-heading">Platform free:</div>
-                <div className="text-sm font-unbounded font-medium ">
-                  0.0001 ETH
-                </div>
-              </div>
-
-              <div className="flex justify-between items-center">
-                <div className="text-sm text-sub-heading">Network fee:</div>
-                <div className="text-sm font-unbounded font-medium ">
-                  {`< $0.001`}
-                </div>
-              </div>
+          {isLoading ? (
+            <div className="h-[200px] flex justify-center items-center">
+              <HashLoader color="#63DF95" />
             </div>
-          </div>
+          ) : (
+            <>
+              {data ? (
+                <div>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <div className="text-sm text-sub-heading">
+                        To address:
+                      </div>
+                      <div className="text-sm font-unbounded font-medium text-green-400">
+                        {shortAddress(data?.verinContract)}
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between items-center">
+                      <div className="text-sm text-sub-heading">
+                        Platform free:
+                      </div>
+                      <div className="text-sm font-unbounded font-medium ">
+                        {formatAmount(
+                          +formatUnits(data?.request?.fee || '0', 18),
+                          2
+                        )}{' '}
+                        ETH
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between items-center">
+                      <div className="text-sm text-sub-heading">
+                        Network fee:
+                      </div>
+                      <div className="text-sm font-unbounded font-medium ">
+                        {`< $0.001`}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="h-[200px] flex  justify-center items-center">
+                  <p className="text-[#B3A9C9]">No data found</p>
+                </div>
+              )}
+            </>
+          )}
 
           <div className="gap-4 flex justify-between mt-[24px]">
             <div className="flex-1">
@@ -123,10 +172,11 @@ const ClaimModal = ({ isOpen, onClose }) => {
 
             <div className="flex-1">
               <button
-                className="bg-[#63DF95] text-[#1B132F] py-2 px-4 rounded hover:bg-[#52c07a] w-full text-sm font-bold"
+                className="bg-[#63DF95] text-[#1B132F] py-2 px-4 rounded hover:bg-[#52c07a] w-full text-sm font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={isConfirming || isLoading || !data}
                 onClick={handleClaim}
               >
-                Claim
+                {isConfirming ? <ClipLoader /> : null} Claim
               </button>
             </div>
           </div>

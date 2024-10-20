@@ -1,17 +1,20 @@
-import { configureStore } from '@reduxjs/toolkit';
-import storage from 'redux-persist/lib/storage'; // Lưu trữ trong localStorage
-import { persistStore, persistReducer } from 'redux-persist';
-import { combineReducers } from 'redux';
+import { configureStore } from '@reduxjs/toolkit'
+import storage from 'redux-persist/lib/storage'
+import { persistStore, persistReducer } from 'redux-persist'
+import { combineReducers } from 'redux'
+
+import proofsList from './proofsList'
 
 const rootReducer = combineReducers({
-});
+  proofsList,
+})
 
 const persistConfig = {
   key: 'root',
   storage,
-};
+}
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
   reducer: persistedReducer,
@@ -19,7 +22,6 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: false,
     }),
-});
+})
 
-
-export const persistor = persistStore(store);
+export const persistor = persistStore(store)

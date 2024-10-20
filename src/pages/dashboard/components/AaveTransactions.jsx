@@ -6,6 +6,7 @@ import borrowImg from '../../../assets/images/borrow.svg'
 import repayImg from '../../../assets/images/repay.svg'
 import { tokens } from '../../../utils/tokens'
 import { formatAmount } from '../../../utils/helper'
+import { EXPLORER_URL } from '../../../utils/setup'
 
 const typeIcon = {
   Borrow: borrowImg,
@@ -64,7 +65,7 @@ const AaveTransactions = ({ txs = [] }) => {
                     </div>
                     <div>
                       <a
-                        href={`https://optimistic.etherscan.io/tx/${item?.txHash}`}
+                        href={`${EXPLORER_URL}/tx/${item?.txHash}`}
                         target="_blank"
                         className="flex items-center justify-center w-[85px] h-[32px] p-[12px_16px] rounded-[4px] bg-[#FEFDFF] gap-[4px]"
                       >
