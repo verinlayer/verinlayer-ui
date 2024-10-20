@@ -8,6 +8,7 @@ import Footer from '../../components/Footer'
 import Overview from './components/Overview'
 import ProofsList from './components/ProofsList'
 import apiService from '../../utils/apiService'
+import { ADDRESS } from '../../utils/setup'
 
 async function fetchAaveTransaction(address) {
   const response = await apiService.get(
@@ -20,7 +21,7 @@ async function fetchAaveTransaction(address) {
 const Dashboard = () => {
   const { chainId } = useAccount()
   // const { address } = useAccount()
-  const address = '0x6cd71d6cb7824add7c277f2ca99635d98f8b9248'
+  const address = ADDRESS
   const { data } = useQuery({
     queryKey: ['aaveTransactions', address],
     queryFn: () => fetchAaveTransaction(address),
