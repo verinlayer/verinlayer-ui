@@ -11,7 +11,7 @@ import { formatUnits } from 'viem'
 import { contractAddresses } from '../../../../configs/contractAddresses'
 import { useAccount, useReadContracts } from 'wagmi'
 import { lendingABI } from '../../../../configs/abi/lendingAbi.ts'
-import { ADDRESS } from '../../../../utils/setup
+import { ADDRESS } from '../../../../utils/setup'
 
 const lendingContract = {
   address: contractAddresses.lending,
