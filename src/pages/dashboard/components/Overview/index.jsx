@@ -11,6 +11,7 @@ import { formatUnits } from 'viem'
 import { contractAddresses } from '../../../../configs/contractAddresses'
 import { useAccount, useReadContracts } from 'wagmi'
 import { lendingABI } from '../../../../configs/abi/lendingAbi.ts'
+import { ADDRESS } from '../../../../utils/setup
 
 const lendingContract = {
   address: contractAddresses.lending,
@@ -19,7 +20,7 @@ const lendingContract = {
 
 const Overview = ({ totalBorrow, totalRepay }) => {
   const { chainId } = useAccount()
-  const address = '0x6cd71d6cb7824add7c277f2ca99635d98f8b9248'
+  const address = ADDRESS
   const { data: results } = useReadContracts({
     query: {
       enabled: !!address && !!chainId,
