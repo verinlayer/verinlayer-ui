@@ -89,12 +89,16 @@ const ClaimModal = ({ isOpen, onClose }) => {
         txHash: hash,
       }
       if (dataSource && dataSource.length > 0) {
+        if (dataSource.some((item) => item.txHash === hash)) {
+          return
+        }
         dispatch(setProofsListState({ dataSource: [...dataSource, payload] }))
       } else {
         let newDataSource = []
         newDataSource.push(payload)
         dispatch(setProofsListState({ dataSource: newDataSource }))
       }
+      onClose()
     }
   }, [isConfirmed])
 
@@ -137,7 +141,7 @@ const ClaimModal = ({ isOpen, onClose }) => {
                       <div className="text-sm font-unbounded font-medium ">
                         {formatAmount(
                           +formatUnits(data?.request?.fee || '0', 18),
-                          2
+                          18
                         )}{' '}
                         ETH
                       </div>
@@ -173,11 +177,11 @@ const ClaimModal = ({ isOpen, onClose }) => {
 
             <div className="flex-1">
               <button
-                className="bg-[#63DF95] text-[#1B132F] py-2 px-4 rounded hover:bg-[#52c07a] w-full text-sm font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-[#63DF95] text-[#1B132F] py-2 px-4 rounded hover:bg-[#52c07a] w-full text-sm font-bold disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-4"
                 disabled={isConfirming || isLoading || !data}
                 onClick={handleClaim}
               >
-                {isConfirming ? <ClipLoader /> : null} Claim
+                {isConfirming ? <ClipLoader size={16} /> : null} Claim
               </button>
             </div>
           </div>

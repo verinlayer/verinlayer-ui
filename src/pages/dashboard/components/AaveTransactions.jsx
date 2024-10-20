@@ -65,7 +65,7 @@ const AaveTransactions = ({ txs = [] }) => {
                     </div>
                     <div>
                       <a
-                        href={`${EXPLORER_URL}/tx/${item?.txHash}`}
+                        href={`https://etherscan.io/tx/${item?.txHash}`}
                         target="_blank"
                         className="flex items-center justify-center w-[85px] h-[32px] p-[12px_16px] rounded-[4px] bg-[#FEFDFF] gap-[4px]"
                       >

@@ -14,7 +14,7 @@ export function shortAddress(address, chars = 4) {
     return `Invalid 'address' '${address}'`
   }
 
-  return `${parsed.substring(0, chars + 2)}...${parsed.substring(parsed?.length - chars)}`
+  return `${address.substring(0, chars + 2)}...${address.substring(address?.length - chars)}`
 }
 
 export function shortTx(tx, chars = 4) {
