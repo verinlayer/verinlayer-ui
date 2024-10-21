@@ -18,7 +18,7 @@ const lendingContract = {
   abi: lendingABI,
 }
 
-const Overview = ({ totalBorrow, totalRepay }) => {
+const Overview = ({ totalBorrow, totalRepay, totalSettlements }) => {
   const { chainId } = useAccount()
   const address = ADDRESS
   const { data: results } = useReadContracts({
@@ -133,7 +133,7 @@ const Overview = ({ totalBorrow, totalRepay }) => {
           </div>
 
           <div className="font-unbounded text-[24px] font-medium leading-[36px]">
-            0
+            {totalSettlements}
           </div>
         </div>
 

@@ -32,6 +32,7 @@ const Dashboard = () => {
   const txs = data?.txs || []
   const totalRepay = data?.totalRepay || '0'
   const totalBorrow = data?.totalBorrow || '0'
+  const totalSettlements = data?.totalSettlements || '0'
 
   return (
     <div className="dashboard">
@@ -57,7 +58,11 @@ const Dashboard = () => {
               </Tab.List>
               <Tab.Panels className="pt-0 mt-0">
                 <Tab.Panel>
-                  <Overview totalBorrow={totalBorrow} totalRepay={totalRepay} />
+                  <Overview
+                    totalBorrow={totalBorrow}
+                    totalRepay={totalRepay}
+                    totalSettlements={totalSettlements}
+                  />
                 </Tab.Panel>
                 <Tab.Panel>
                   <AaveTransactions txs={txs} />
