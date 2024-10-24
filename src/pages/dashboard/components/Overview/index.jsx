@@ -39,6 +39,7 @@ const Overview = ({ totalBorrow, totalRepay, totalSettlements }) => {
 
   const bonusPercentage = results?.[0].result || 0n
   const bonusPercentageInPercent = bonusPercentage / 1000n
+  console.log('bonusPercentageInPercent', bonusPercentageInPercent.toString())
 
   return (
     <div className="card px-[40px] py-[32px]">
