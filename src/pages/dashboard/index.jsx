@@ -28,7 +28,7 @@ const Dashboard = () => {
     staleTime: 2000, // 2 seconds
     enabled: !!address && !!chainId,
   })
-
+  //comment
   const txs = data?.txs || []
   const totalRepay = data?.totalRepay || '0'
   const totalBorrow = data?.totalBorrow || '0'
