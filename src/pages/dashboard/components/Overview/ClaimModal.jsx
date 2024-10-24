@@ -20,7 +20,9 @@ import BrevisRequestAbi from '../../../../configs/abi/brevisRequestAbi.ts'
 import { useProofsListState } from '../../../../store/proofsList/hooks'
 import { formatAmount, shortAddress } from '../../../../utils/helper.js'
 import { setProofsListState } from '../../../../store/proofsList/index.js'
-import { ADDRESS } from '../../../../utils/setup'
+// import { ADDRESS } from '../../../../utils/setup'
+import { useAccount } from 'wagmi'
+
 
 async function fetchClaimData(address) {
   const response = await apiService.post(
@@ -37,8 +39,8 @@ const ClaimModal = ({ isOpen, onClose }) => {
       hash,
     })
 
-  // const { address } = useAccount()
-  const address = ADDRESS
+  const { address } = useAccount()
+  // const address = ADDRESS
   const { data, isLoading } = useQuery({
     queryKey: ['claimData', address, isOpen],
     queryFn: () => fetchClaimData(address),
