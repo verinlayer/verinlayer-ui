@@ -132,8 +132,9 @@ const ClaimModal = ({ isOpen, onClose }) => {
                         To address:
                       </div>
                       <div className="text-sm font-unbounded font-medium text-green-400">
-                        {/* {shortAddress(data?.verinContract)} */
-                        address}
+                        {/* /* {shortAddress(data?.verinContract)} */ }
+                        {/* /* {shortAddress(data?.verinContract)} */}
+                          {shortAddress(address)}
                       </div>
                     </div>
 

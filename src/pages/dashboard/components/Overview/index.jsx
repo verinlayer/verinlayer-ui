@@ -19,8 +19,8 @@ const lendingContract = {
 }
 
 const Overview = ({ totalBorrow, totalRepay, totalSettlements }) => {
-  const { chainId } = useAccount()
-  const address = ADDRESS
+  const { chainId, address } = useAccount()
+  // const address = ADDRESS
   const { data: results } = useReadContracts({
     query: {
       enabled: !!address && !!chainId,
