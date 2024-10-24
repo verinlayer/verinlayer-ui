@@ -20,8 +20,8 @@ async function fetchAaveTransaction(address) {
 
 const Dashboard = () => {
   const { chainId } = useAccount()
-  // const { address } = useAccount()
-  const address = ADDRESS
+  const { address } = useAccount()
+  // const address = ADDRESS
   const { data } = useQuery({
     queryKey: ['aaveTransactions', address],
     queryFn: () => fetchAaveTransaction(address),
