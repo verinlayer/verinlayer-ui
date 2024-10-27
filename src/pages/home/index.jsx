@@ -24,7 +24,7 @@ const Home = () => {
           </div>
 
           <div className="mt-[56px] text-heading">
-            Current supporting De-Fi projects to get proofs:
+            Current supporting projects
           </div>
           <div className="mt-[20px] flex space-x-[24px]">
             <div
