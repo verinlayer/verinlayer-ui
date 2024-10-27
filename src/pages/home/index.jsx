@@ -17,10 +17,10 @@ const Home = () => {
         <main className="main">
           <div className="font-unbounded text-[52px] leading-[72pxp]">
             <h1>
-              Seamlessly unify <br />
-              all blockchain activities
+            Consolidate all blockchain history <br />
+              {/* all blockchain history */}
             </h1>
-            <h1 className="font-bold text-green-400">In ONE platform .</h1>
+            <h1 className="font-bold text-green-400">Create an universal credit scoring system .</h1>
           </div>
 
           <div className="mt-[56px] text-heading">
