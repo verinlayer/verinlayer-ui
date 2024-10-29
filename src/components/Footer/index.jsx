@@ -13,7 +13,7 @@ const Footer = () => {
       </div>
 
       <div className="flex space-x-4">
-        <a href="#" target="_blank">
+        <a href="https://x.com/VerinLayer" target="_blank">
           <img src={xImg} alt="X" />
         </a>
 
@@ -21,13 +21,13 @@ const Footer = () => {
           <img src={discordImg} alt="X" />
         </a>
 
-        <a href="#" target="_blank">
+        {/* <a href="#" target="_blank">
           <img src={mediumImg} alt="X" />
-        </a>
+        </a> */}
 
-        <a href="#" target="_blank">
+        {/* <a href="#" target="_blank">
           <img src={linkedinImg} alt="X" />
-        </a>
+        </a> */}
       </div>
     </footer>
   )

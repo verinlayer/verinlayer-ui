@@ -24,7 +24,7 @@ const Home = () => {
           </div>
 
           <div className="mt-[56px] text-heading">
-            Current supporting projects
+            Supporting projects
           </div>
           <div className="mt-[20px] flex space-x-[24px]">
             <div
@@ -44,7 +44,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="card w-[440px] flex items-center">
+            {/* <div className="card w-[440px] flex items-center">
               <div>
                 <img src={compoundImg} alt="AAVE" />
               </div>
@@ -58,12 +58,27 @@ const Home = () => {
                   protocol.
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="mt-[56px] text-heading">Coming soon</div>
           <div className="mt-[20px] flex space-x-[24px]">
             <div className="card w-[440px] flex items-center">
+              <div>
+                <img src={compoundImg} alt="AAVE" />
+              </div>
+
+              <div className="ml-[24px]">
+                <div className="text-[24px] font-bold font-unbounded">
+                  Compound
+                </div>
+                <div className="font-medium text-sub-heading">
+                Earn interest or borrow crypto via an automated lending
+                protocol.
+                </div>
+              </div>
+            </div>
+            {/* <div className="card w-[440px] flex items-center">
               <div>
                 <img src={uniswapImg} alt="AAVE" />
               </div>
@@ -77,7 +92,7 @@ const Home = () => {
                   chains.
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className="card w-[440px] flex items-center">
               <div>
